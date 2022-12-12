@@ -1,5 +1,5 @@
 # compareQSMnet
-This is a source code utilized for experiments of "A fair comparison in deep learning-based MRI reconstruction"
+This is a (not completed) source code utilized for experiments of "A fair comparison in deep learning-based MRI reconstruction"
 
 ## Requirements 
 * Conda
