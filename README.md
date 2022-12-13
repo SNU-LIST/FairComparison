@@ -13,38 +13,29 @@ This is a (not completed) source code utilized for experiments of "A fair compar
 cd code
 conda create --name qsmnet -c conda-forge -c anaconda --file requirements.txt 
 ```
+2. data structure: please construct data with below structures
+```
+data  
+  └ D111
+      └ train2  
+          └ IMG.mat  
+      └ train3   
+          └ IMG.mat    
+      └ ...
+  └ D113
+  └ ...
+```                
 
 ### Step 1: dataset generation (MATLAB & Python)
 1. dataset generation & augmentation (matlab)  
 ```bash
-cd code/dataset_generation
+cd code_for_dataset_generation
 matlab
-addpath(genpath('../../Code/util'))
+final_run
 ```  
- For generation D111,
+2. generation patches for deep learning (python)  
 ```bash
-cd ../../test1
-healthy_run_D111
-run2_D111
-run3_D111
-```
-For generation D113, 
-```bash
-cd ../../test1
-healthy_run_D113
-run2_D113
-run3_D113
-```
-For generation DVSHARP, DPDF, and DLBV,
-```bash
-cd ../../test1
-healthy_run_DVSHARP
-run2_Dbkg
-run2_DVSHARP
-run3_DVSHARP
-```
-3. generation patches for deep learning (python)  
-```bash
+cd code_for_dataset_generation
 conda activate qsmnet
 python patch.py
 ```
@@ -52,7 +43,7 @@ python patch.py
 ### Step 2: QSMnet training & inference (Python)
 1. repository & activate conda environment
 ```bash
-cd code
+cd code_for_neural_network
 conda activate qsmnet
 ```
 2. QSMnet training  
