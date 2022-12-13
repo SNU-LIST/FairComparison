@@ -19,6 +19,7 @@ conda create --name qsmnet -c conda-forge -c anaconda --file requirements.txt
 ```bash
 cd code/dataset_generation
 matlab
+addpath(genpath('../../Code/util'))
 ```  
  For generation D111,
 ```bash
