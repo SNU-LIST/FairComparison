@@ -5,12 +5,13 @@ This is a (not completed) source code utilized for experiments of "A fair compar
 * Conda (https://docs.conda.io/en/latest/)
 * MATLAB 2016b (https://www.mathworks.com/products/matlab.html)
 * NVIDIA TITAN Xp GPU
+* CUDA 10.0
 
 ## Usage
 ### Step 0: First time only
 1. Create conda environment
 ```bash
-conda create --name qsmnet -c conda-forge -c anaconda --file requirements.txt 
+conda create --name qsmnet -c conda-forge -c anaconda -c pytorch --file requirements.txt 
 ```
 2. data structure: please construct data with below structures
 ```
