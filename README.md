@@ -1,11 +1,11 @@
-# compareQSMnet
+# A fair comparison in deep learning MRI reconstruction
 This is a (not completed) source code utilized for experiments of "A fair comparison in deep learning-based MRI reconstruction"
 
 ## Requirements 
 * Conda (https://docs.conda.io/en/latest/)
 * MATLAB 2016b (https://www.mathworks.com/products/matlab.html)
-* NVIDIA TITAN Xp GPU
 * CUDA 10.0
+* NVIDIA TITAN Xp GPU
 
 ## Usage
 ### Step 0: First time only
