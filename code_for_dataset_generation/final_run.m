@@ -21,7 +21,7 @@ cd ../DPDF
 run1_DPDF
 
 cd ../DVSHARP
-run1_DVHSARP
+run1_DVSHARP
 
 cd ..
 run2_Dbkg
