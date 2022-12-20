@@ -43,7 +43,7 @@ python patch.py
 ```
 
 ### Step 2: QSMnet training & inference (Python)
-1. activate conda environment
+1. Activate conda environment
 ```bash
 cd code_for_neural_network
 conda activate qsmnet
@@ -58,7 +58,7 @@ If you want to change hyperparameters, please replace the default value in parse
 ```bash
 python test.py -g 0 -s ../save/qsmnet111/result -e 25
 ```
-4. calculate evaluation metrics (NRMSE, SSIM, PSNR, HFEN) of inferenced maps
+4. Calculate evaluation metrics (NRMSE, SSIM, PSNR, HFEN) of inferenced maps
 ```bash
 python testmetric.py -p ../network/qsmnet111/result
 ```
