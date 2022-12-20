@@ -18,13 +18,14 @@ from datetime import datetime
 ## 1. parse input
 if 1:
     parser = argparse.ArgumentParser(description='compareqsmnet arguments')
-    parser.add_argument('-g', '--GPU',      type=int,    required=True)
-    parser.add_argument('-s', '--save_dir', type=str,    required=True)
-    parser.add_argument('-e', '--net_epoch',type=int,    required=True)    
+    parser.add_argument('-g', '--GPU',      type=int,    required=True,  help='GPU device to use (0, 1, ...)')
+    parser.add_argument('-s', '--save_dir', type=str,    required=True,  help='directory where inferenced maps are stored')
+    parser.add_argument('-e', '--net_epoch',type=int,    required=True,  help='the training epoch of the network')    
 
-    parser.add_argument('--TRAIN_DATA',    type=str,    default='/home/chungseok/project/compareqsmnet/data/DPDF')
-    parser.add_argument('--TEST_DATA',    type=str,    default='/home/chungseok/project/compareqsmnet/data/DPDF')
+    parser.add_argument('--TRAIN_DATA',    type=str,    default='../data/D111',   help='path for training data')
+    parser.add_argument('--TEST_DATA',    type=str,    default='../data/D111/result',   help='path for validation data')
 
+    # hyperparameters
     parser.add_argument('--NET_CHA',       type=int,    default=32)
     parser.add_argument('--NET_KER',       type=int,    default=5)
     parser.add_argument('--NET_ACT',       type=str,    default='leaky_relu')
@@ -39,6 +40,7 @@ if 1:
     parser.add_argument('--TRAIN_W2',      type=float,  default=0.1)
     parser.add_argument('--TRAIN_OPT',     type=str,    default='RMSProp')
 
+    # settings for reproducibility
     parser.add_argument('--BATCH_ORDER_SEED',   type=int,    default=0)
     parser.add_argument('--WEIGHT_INIT_SEED',   type=int,    default=0)
     parser.add_argument('--CUDA_deterministic', type=str,    default='True')

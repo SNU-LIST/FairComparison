@@ -18,12 +18,13 @@ from datetime import datetime
 ## 1. parse input
 if 1:
     parser = argparse.ArgumentParser(description='compareqsmnet arguments')
-    parser.add_argument('-g', '--GPU',     type=int,    required=True)
-    parser.add_argument('-s', '--save_dir',type=str,    required=True)
+    parser.add_argument('-g', '--GPU',     type=int,    required=True,  help='GPU device to use (0, 1, ...)')
+    parser.add_argument('-s', '--save_dir',type=str,    required=True,  help='directory where trained networks are stored')
 
-    parser.add_argument('--TRAIN_DATA',    type=str,    default='/fast_storage/chungseok/DVSHARP')
-    parser.add_argument('--VAL_DATA',      type=str,    default='/home/chungseok/project/compareqsmnet/data/DVSHARP')
+    parser.add_argument('--TRAIN_DATA',    type=str,    default='../data/D111',   help='path for training data')
+    parser.add_argument('--VAL_DATA',      type=str,    default='../data/D111/result',   help='path for validation data')
 
+    # hyperparameters
     parser.add_argument('--NET_CHA',       type=int,    default=32)
     parser.add_argument('--NET_KER',       type=int,    default=5)
     parser.add_argument('--NET_ACT',       type=str,    default='leaky_relu')
@@ -38,6 +39,7 @@ if 1:
     parser.add_argument('--TRAIN_W2',      type=float,  default=0.1)
     parser.add_argument('--TRAIN_OPT',     type=str,    default='RMSProp')
 
+    # settings for reproducibility
     parser.add_argument('--BATCH_ORDER_SEED',   type=int,    default=0)
     parser.add_argument('--WEIGHT_INIT_SEED',   type=int,    default=0)
     parser.add_argument('--CUDA_deterministic', type=str,    default='True')
@@ -72,10 +74,10 @@ if 2:
     device=torch.device("cuda")
 
     os.environ['PYTHONHASHSEED'] = "0"
-    random.seed(0)
+    random.seed(args["BATCH_ORDER_SEED"])
     np.random.seed(0)
     torch.manual_seed(0)
-    torch.random.manual_seed(0)
+    torch.random.manual_seed(args["WEIGHT_INIT_SEED"])
     torch.cuda.manual_seed(0)
     torch.cuda.manual_seed_all(0)
     if args['CUDA_deterministic'] == 'True':
@@ -106,23 +108,25 @@ scheduler = torch.optim.lr_scheduler.StepLR(optimizer, step_size=600, gamma=0.95
 logger_train = Logger(f'{args["save_dir"]}/log_train.csv')
 logger_val = Logger(f'{args["save_dir"]}/log_val.csv')
 
-data = pd.read_csv(f'../seed_batch/seed{args["BATCH_ORDER_SEED"]}.csv')
-if args['TRAIN_DATA'].split('/')[-1]=='D113':
-    data = pd.read_csv(f'../seed_batch/seed{args["BATCH_ORDER_SEED"]}_D113.csv')
-ind_stack = np.array(data)
-num_batch = int(ind_stack.shape[1]/args["TRAIN_BATCH"])
+# data = pd.read_csv(f'../seed_batch/seed{args["BATCH_ORDER_SEED"]}.csv')
+# if args['TRAIN_DATA'].split('/')[-1]=='D113':
+#     data = pd.read_csv(f'../seed_batch/seed{args["BATCH_ORDER_SEED"]}_D113.csv')
+# ind_stack = np.array(data)
+# num_batch = int(ind_stack.shape[1]/args["TRAIN_BATCH"])
 
-# for H tuning
-checkpoint = torch.load(f'../seed_weight/seed{args["WEIGHT_INIT_SEED"]}.pth')
-model.load_state_dict(checkpoint['model'])
-del(checkpoint); 
-torch.cuda.empty_cache();
+# # for H tuning
+# checkpoint = torch.load(f'../seed_weight/seed{args["WEIGHT_INIT_SEED"]}.pth')
+# model.load_state_dict(checkpoint['model'])
+# del(checkpoint); 
+# torch.cuda.empty_cache();
 
 ind = list(range(len(dt['pfield'])))
+num_batch = int(len(ind)/args["TRAIN_BATCH"])
 # 5. training
 step = 0
 for epoch in range(args["TRAIN_EPOCH"]): 
-    ind = ind_stack[epoch,:]
+    # ind = ind_stack[epoch,:]
+    random.shuffle(ind)
     if step >= args['MAX_STEP']:
         save_checkpoint(epoch, step, model, optimizer, scheduler, f'{args["save_dir"]}/model', f'step{step:03d}.pth')
         break      

@@ -18,11 +18,12 @@ from datetime import datetime
 
 import argparse
 parser = argparse.ArgumentParser(description='QSMnet arguments')
-parser.add_argument('-p', '--test_data_path',type=str,    required=True)
+parser.add_argument('-p', '--test_data_path',type=str,    required=True,  help='directory where inferenced maps are stored')
 
-parser.add_argument('--TRAIN_DATA',    type=str,    default='/home/chungseok/project/compareqsmnet/data/DPDF')
-parser.add_argument('--TEST_DATA',    type=str,    default='/home/chungseok/project/compareqsmnet/data/DPDF')
+parser.add_argument('--TRAIN_DATA',    type=str,    default='../data/D111',   help='path for training data')
+parser.add_argument('--TEST_DATA',    type=str,    default='../data/D111/result',   help='path for validation data')
 
+# settings for reproducibility
 parser.add_argument('--BATCH_ORDER_SEED',   type=int,    default=0)
 parser.add_argument('--WEIGHT_INIT_SEED',   type=int,    default=0)
 parser.add_argument('--CUDA_deterministic', type=str,    default='True')
