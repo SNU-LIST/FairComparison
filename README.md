@@ -13,7 +13,7 @@ This is a (not completed) source code utilized for experiments of "A fair compar
 ```bash
 conda env create -n qsmnet -f requirements.yaml
 ```
-2. data structure: please construct data with below structures
+2. Data: please organize the qsmnet data according to the format below
 ```
 data  
   └ D111
