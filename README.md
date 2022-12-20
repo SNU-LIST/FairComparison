@@ -11,7 +11,7 @@ This is a (not completed) source code utilized for experiments of "A fair compar
 ### Step 0: First time only
 1. Create conda environment
 ```bash
-conda create --name qsmnet -c conda-forge -c anaconda -c pytorch --file requirements.txt 
+conda env create -n qsmnet -f requirements.yaml
 ```
 2. data structure: please construct data with below structures
 ```
