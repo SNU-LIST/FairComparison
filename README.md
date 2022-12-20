@@ -4,6 +4,8 @@ This is a (not completed) source code utilized for experiments of "A fair compar
 ## Requirements 
 * Conda (https://docs.conda.io/en/latest/)
 * MATLAB 2016b (https://www.mathworks.com/products/matlab.html)
+* FSL (https://fsl.fmrib.ox.ac.uk/fsl/fslwiki/FSL)
+* ANTs (https://github.com/ANTsX/ANTs)
 * CUDA 10.0
 * NVIDIA TITAN Xp GPU
 
