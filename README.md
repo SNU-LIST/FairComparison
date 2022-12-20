@@ -35,7 +35,7 @@ cd code_for_dataset_generation
 matlab
 final_run
 ```  
-2. generation patches for deep learning (python)  
+2. generate patches for deep learning (python)  
 ```bash
 cd code_for_dataset_generation
 conda activate qsmnet
