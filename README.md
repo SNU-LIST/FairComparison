@@ -29,13 +29,13 @@ data
 ```                
 
 ### Step 1: dataset generation (MATLAB & Python)
-1. dataset generation & augmentation (matlab)  
+1. Dataset generation & augmentation (matlab)  
 ```bash
 cd code_for_dataset_generation
 matlab
 final_run
 ```  
-2. generate patches for deep learning (python)  
+2. Generate patches for deep learning (python)  
 ```bash
 cd code_for_dataset_generation
 conda activate qsmnet
