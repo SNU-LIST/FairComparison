@@ -4,7 +4,7 @@ This repository contains the source code for training/inference of QSMnet used i
 ## Conda environment
 Create the conda environment using the provided YAML file:
 ```bash
-conda env create -n qsmnet2 -f environment.yaml
+conda env create -n qsmnet2 -f environment.yml
 ```
 
 ## QSMnet training 
